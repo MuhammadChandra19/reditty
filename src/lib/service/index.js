@@ -6,8 +6,10 @@ const { requester } = require("@/utils/requester")
  * 
  * @typedef { Object } ListingData
  * @property { String } id
- * @property { String } author_fullname
+ * @property { String } author
  * @property { String } title
+ * @property { Number } ups
+ * @property { Number } num_comments
  * @property { String } subreddit_name_prefixed
  * @property { String } selftext
  * @property { String | null } thumbnail

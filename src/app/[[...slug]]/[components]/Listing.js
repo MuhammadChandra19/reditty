@@ -10,7 +10,7 @@ export default async function Listing({ pathName }) {
     console.log(e)
   }
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col">
       {
         data.map(listing => <ListingCard  key={listing.data.id} data={listing.data} />)
       }
