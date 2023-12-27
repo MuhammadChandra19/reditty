@@ -2,8 +2,6 @@
 
 const { requester } = require("@/utils/requester")
 
-const { request } = requester()
-
 /**
  * 
  * @typedef { Object } ListingData
@@ -28,6 +26,7 @@ const { request } = requester()
  */
 
 export const getListing = async (url) => {
+  const { request } = requester()
   try {
     const { data: {
       children = []
@@ -36,7 +35,6 @@ export const getListing = async (url) => {
     return children
 
   } catch(e) {
-    console.log(e)
     throw new Error(e)
   }
 }

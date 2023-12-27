@@ -1,9 +1,14 @@
-import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { getListing } from "@/lib/service"
 import ListingCard from "./ListingCard"
 
 export default async function Listing({ pathName }) {
-  const data  = await getListing(pathName)
+  /**@type {import("@/lib/service").ListingChildren[]} */
+  let data = []
+  try {
+    data = await getListing(pathName)
+  } catch(e) {
+    console.log(e)
+  }
   return (
     <div className="flex flex-col gap-4">
       {
