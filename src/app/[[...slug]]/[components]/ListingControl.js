@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation"
  */
 export const ListingControl = ({ params }) => {
   const router = useRouter()
-  const [r, topic, type] = params
+  const [r, topic = "popular", type = "hot"] = params
   const cardType = useStore((state) => state.cardType)
   const setCardType = useStore((state) => state.setCardType)
 

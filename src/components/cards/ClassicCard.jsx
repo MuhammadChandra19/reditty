@@ -1,6 +1,7 @@
 import { ArrowBigUp, ArrowBigDown, MessageSquare, MinusSquare } from "lucide-react"
 import { Card } from "../ui/card"
 import { nFormatter, timeAgoFromUnixTimestamp } from "@/utils/helper"
+import Link from "next/link"
 
 /**
  * @typedef { Object } TListingCard
@@ -19,7 +20,7 @@ const ClassicCard = ({ data }) => {
       <div className="flex-auto flex-col p-4">
         <div className="font-semibold cursor-pointer mb-4">{ data.title }</div>
         <div className="flex gap-2 mb-2">
-          <div className="font-medium text-sm">{data.subreddit_name_prefixed}</div>
+          <Link className="font-medium text-sm cursor-pointer" href={`/${data.subreddit_name_prefixed}`}>{data.subreddit_name_prefixed}</Link>
           <div className="text-gray-500 text-sm">Posted By {`u/${data.author}`}</div>
           <div className="text-gray-500 text-sm">{ timeAgoFromUnixTimestamp(data.created) }</div>
         </div>

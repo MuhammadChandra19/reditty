@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card"
 import { useStore } from "@/lib/store"
 import { nFormatter, timeAgoFromUnixTimestamp } from "@/utils/helper"
 import { ArrowBigDown, ArrowBigUp, MessageSquare } from "lucide-react"
+import Link from "next/link"
 /**
  * @typedef { Object } TListingCard
  * @property { import("@/lib/service").ListingData } data
@@ -32,7 +33,7 @@ export default function ListingCard({ data }) {
         </div>
         <div className="flex-auto flex-col p-4">
           <div className="flex gap-2 mb-2">
-            <div className="font-medium text-sm">{data.subreddit_name_prefixed}</div>
+            <Link className="font-medium text-sm cursor-pointer" href={`/${data.subreddit_name_prefixed}`}>{data.subreddit_name_prefixed}</Link>
             <div className="text-gray-500 text-sm">Posted By {`u/${data.author}`}</div>
             <div className="text-gray-500 text-sm">{ timeAgoFromUnixTimestamp(data.created) }</div>
           </div>
