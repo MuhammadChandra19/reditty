@@ -1,9 +1,11 @@
 "use client"
 import { Card } from "@/components/ui/card"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger,DropdownMenuGroup, DropdownMenuItem } from "@/components/ui/dropdown-menu"
+import { Input } from "@/components/ui/input"
 import { useStore } from "@/lib/store"
 import { BadgeInfo, Flame, MinusSquare, PanelBottom, Square, SquareEqual, TrendingUp } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 /**
  * 
@@ -12,6 +14,8 @@ import { useRouter } from "next/navigation"
  */
 export const ListingControl = ({ params }) => {
   const router = useRouter()
+  const [searchValue, setSearchValue] = useState('')
+
   const [r, topic = "popular", type = "hot"] = params
   const cardType = useStore((state) => state.cardType)
   const setCardType = useStore((state) => state.setCardType)
@@ -76,6 +80,19 @@ export const ListingControl = ({ params }) => {
           <TrendingUp className="h-6 w-6"/>
           <span>Top</span>
         </div>
+      </div>
+      <div className="flex-auto px-4">
+        <Input 
+          className="w-full" 
+          placeholder="Search Reddity" 
+          value={searchValue} 
+          onChange={(e) => setSearchValue(e.target.value)} 
+          onKeyDown={(e) => {
+            if(e.key === 'Enter') {
+              router.push(`/${r}/${searchValue}/${type}`)
+            }
+          }}
+        />
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger>
