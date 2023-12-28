@@ -2,6 +2,7 @@ import { ArrowBigUp, ArrowBigDown, MessageSquare, MinusSquare } from "lucide-rea
 import { Card } from "../ui/card"
 import { nFormatter, timeAgoFromUnixTimestamp } from "@/utils/helper"
 import Link from "next/link"
+import Image from "next/image"
 
 /**
  * @typedef { Object } TListingCard
@@ -17,6 +18,19 @@ const ClassicCard = ({ data }) => {
         <div className="font-semibold">{ nFormatter(data.ups)}</div>
         <ArrowBigDown className="cursor-pointer"/>
       </div>
+      {
+        data.thumbnail_height && 
+        !data.is_video && 
+        <div className="min-w-36 bg-black">
+          <Image 
+            src={data.url} 
+            alt={data.title} 
+            height={data.thumbnail_height} 
+            width={data.thumbnail_width} 
+            className="m-auto"
+          />
+        </div>
+      }
       <div className="flex-auto flex-col p-4">
         <div className="font-semibold cursor-pointer mb-4">{ data.title }</div>
         <div className="flex gap-2 mb-2">

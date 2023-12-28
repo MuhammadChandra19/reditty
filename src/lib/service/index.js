@@ -12,8 +12,11 @@ const { requester } = require("@/utils/requester")
  * @property { Number } num_comments
  * @property { String } subreddit_name_prefixed
  * @property { String } selftext
- * @property { String | null } thumbnail
+ * @property { Number | null  } thumbnail_height
  * @property { Number | null } thumbnail_width
+ * @property { String | null } url
+ * @property { reddit_video: { fallback_url: String }} media
+ * @property { Boolean } is_video
  * @property { Number } created
  */
 

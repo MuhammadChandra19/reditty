@@ -10,7 +10,7 @@ import Link from "next/link"
  */
 const CompactCard = ({ data }) => {
   return (
-    <div className="flex border-b-slate-300 border-b-2 gap-2">
+    <div className="flex border-b-slate-300 border-b-2 gap-2 bg-white">
       <div className="flex gap-2 bg-slate-300 justify-center items-center min-w-32">
         <ArrowBigUp className="cursor-pointer"/>
         <div className="font-medium text-sm">{ nFormatter(data.ups)}</div>
