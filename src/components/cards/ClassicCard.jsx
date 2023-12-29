@@ -6,7 +6,7 @@ import Image from "next/image"
 
 /**
  * @typedef { Object } TListingCard
- * @property { import("@/lib/service").ListingData } data
+ * @property { import("@/lib/types").ListingData } data
  * @param { TListingCard } listingCard
  * @returns 
  */

@@ -10,7 +10,6 @@ import { requestAccessToken } from "./requestAccessToken"
 export const validateAccessToken = async (accessToken) => {
 
   if(isInvalidOrExpired(accessToken)) {
-    console.log('here')
     return await requestAccessToken()
   }
 

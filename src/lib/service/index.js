@@ -1,24 +1,7 @@
 "use server"
 
-const { requester } = require("@/utils/requester")
-
-/**
- * 
- * @typedef { Object } ListingData
- * @property { String } id
- * @property { String } author
- * @property { String } title
- * @property { Number } ups
- * @property { Number } num_comments
- * @property { String } subreddit_name_prefixed
- * @property { String } selftext
- * @property { Number | null  } thumbnail_height
- * @property { Number | null } thumbnail_width
- * @property { String | null } url
- * @property { reddit_video: { fallback_url: String }} media
- * @property { Boolean } is_video
- * @property { Number } created
- */
+import { requester } from "@/utils/requester"
+import * as type from "@/lib/types"
 
 /**
  * 
@@ -26,7 +9,7 @@ const { requester } = require("@/utils/requester")
  * 
  * @typedef { Object } ListingChildren
  * @property { String } kind
- * @property { ListingData } data 
+ * @property { type.ListingData } data 
  * @return { Promise<ListingChildren[]> }
  */
 
@@ -42,4 +25,42 @@ export const getListing = async (url) => {
   } catch(e) {
     throw new Error(e)
   }
+}
+
+/**
+ * 
+ * @param { String } url 
+ * @typedef { Object } Thread
+ * @property { type.ListingData } content
+ * @property { Array<{data: type.Comment }> } content.comments
+ * 
+ * @returns { Promise<Thread> }
+ */
+
+export const getThread = async (url) => {
+  const { request } = requester()
+
+  try {
+    const [ rawContent = { data: {}},rawComment = { data: {}} ] = await request(url)
+    return {
+      comments: _extractChild(rawComment),
+      content: _extractChild(rawContent)[0].data
+    }
+  } catch(e) {
+    throw new Error(e)
+  }
+
+}
+
+/**
+ * @typedef { Object } RawObject
+ * @property { Object } data
+ * @property { Array } data.children
+ *
+ * @param { RawObject } data
+ * 
+ * @returns { Array }
+ */
+const _extractChild = ( { data }) => {
+  return data.children
 }

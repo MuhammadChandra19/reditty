@@ -4,7 +4,7 @@ import Link from "next/link"
 
 /**
  * @typedef { Object } TListingCard
- * @property { import("@/lib/service").ListingData } data
+ * @property { import("@/lib/types").ListingData } data
  * @param { TListingCard } listingCard
  * @returns 
  */

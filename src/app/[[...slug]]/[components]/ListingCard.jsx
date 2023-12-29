@@ -7,9 +7,10 @@ import { nFormatter, timeAgoFromUnixTimestamp } from "@/utils/helper"
 import { ArrowBigDown, ArrowBigUp, MessageSquare } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import * as type from "@/lib/types"
 /**
  * @typedef { Object } TListingCard
- * @property { import("@/lib/service").ListingData } data
+ * @property { type.ListingData } data
  * @param { TListingCard } listingCard
  * @returns 
  */
@@ -38,7 +39,7 @@ export default function ListingCard({ data }) {
             <div className="text-gray-500 text-sm">Posted By {`u/${data.author}`}</div>
             <div className="text-gray-500 text-sm">{ timeAgoFromUnixTimestamp(data.created) }</div>
           </div>
-          <div className="font-semibold cursor-pointer mb-4 p-2">{ data.title }</div>
+          <Link  href={`/comments${data.permalink}`} className="font-semibold cursor-pointer mb-4 p-2">{ data.title }</Link>
           <div className="bg-black ml-2">
             {
               data.thumbnail_height && 
