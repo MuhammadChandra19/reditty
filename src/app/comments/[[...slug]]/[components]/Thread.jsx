@@ -24,19 +24,16 @@ export default async function Thread({ pathName}) {
   const encodeString = (str) => {
     const encodedString = str
 
-    // Decode HTML entities manually
-    const decodedString = encodedString.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;#39;/g, '\'');
-
     // Define the start and end strings to locate the HTML content
     const startString = '<!-- SC_OFF -->';
     const endString = '<!-- SC_ON -->';
 
     // Find the start and end indices
-    const startIndex = decodedString.indexOf(startString);
-    const endIndex = decodedString.indexOf(endString, startIndex + startString.length);
+    const startIndex = encodedString.indexOf(startString);
+    const endIndex = encodedString.indexOf(endString, startIndex + startString.length);
 
     // Extract the HTML content
-   return decodedString.substring(startIndex + startString.length, endIndex);
+   return encodedString.substring(startIndex + startString.length, endIndex);
 
   }
 

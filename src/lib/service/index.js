@@ -41,7 +41,7 @@ export const getThread = async (url) => {
   const { request } = requester()
 
   try {
-    const [ rawContent = { data: {}},rawComment = { data: {}} ] = await request(url)
+    const [ rawContent = { data: {}},rawComment = { data: {}} ] = await request(`${url}?raw_json=1`)
     return {
       comments: _extractChild(rawComment),
       content: _extractChild(rawContent)[0].data
