@@ -8,7 +8,7 @@
 
 export const requestAccessToken = async () => {
 
-  const BASIC_AUTH = process.env.REDDIT_BASIC_AUTH
+  const BASIC_AUTH = btoa(`${process.env.REDDIT_BASIC_KEY}:${process.env.REDDIT_BASIC_SECRET}`)
   const USERNAME = process.env.REDDIT_USERNAME
   const PASSWORD = process.env.REDDIT_PASSWORD
 
