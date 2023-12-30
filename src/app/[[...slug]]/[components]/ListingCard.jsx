@@ -1,23 +1,43 @@
 "use client"
 import ClassicCard from "@/components/cards/ClassicCard"
 import CompactCard from "@/components/cards/CompactCard"
+import InfiniteLoading from "@/components/shared/InfiniteLoading"
 import { Card } from "@/components/ui/card"
 import { useStore } from "@/lib/store"
 import { nFormatter, timeAgoFromUnixTimestamp } from "@/utils/helper"
 import { ArrowBigDown, ArrowBigUp, MessageSquare } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import * as type from "@/lib/types"
+import { useState } from "react"
 /**
  * @typedef { Object } TListingCard
- * @property { type.ListingData } data
+ * @property {import("@/lib/service").ListingChildren[] } listingCard
+ * @property { (param: String) => Promise<{result: ListingChildren[], pageParam: string }> } onLoadNewList
+ * @property { String } pageParam
  * @param { TListingCard } listingCard
  * @returns 
  */
-export default function ListingCard({ data }) {
+export default function ListingCard({ listingCard, onLoadNewList, pageParam }) {
+
+  const [list, setList] = useState(listingCard)
+  const [param, setParam] = useState(pageParam)
   const cardType = useStore((state) => state.cardType)
 
-  const RenderCard = () => {
+  const handleIntersection = async () => {
+    try {
+      const { pageParam, result } = await onLoadNewList(param)
+      setList(prev => [...prev, result])
+      setParam(pageParam)
+    } catch(e) {
+      console.error(e)
+    }
+  }
+
+  /**
+   * @param {{ data: import("@/lib/types").ListingData}} param0 
+   * @returns 
+   */
+  const RenderCard = ({ data }) => {
     if(cardType === "Compact") {
       return <CompactCard key={data.id || ''} data={data}/>
     }
@@ -47,8 +67,8 @@ export default function ListingCard({ data }) {
               <Image 
                 src={data.url} 
                 alt={data.title} 
-                height={data.thumbnail_height} 
-                width={data.thumbnail_width} 
+                height={480} 
+                width={240} 
                 className="m-auto"
               />
             }
@@ -64,5 +84,10 @@ export default function ListingCard({ data }) {
     )
   }
 
-  return <RenderCard />
+  return (
+    <>
+      { list && list.length > 0 && list.map(({ data }, i) => <RenderCard key={i} data={data} />)}
+      <InfiniteLoading onIntersected={handleIntersection}/>
+    </>
+  )
 }

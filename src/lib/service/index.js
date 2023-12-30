@@ -10,17 +10,21 @@ import * as type from "@/lib/types"
  * @typedef { Object } ListingChildren
  * @property { String } kind
  * @property { type.ListingData } data 
- * @return { Promise<ListingChildren[]> }
+ * @return { Promise<{ data: ListingChildren[], after: String }> }
  */
 
 export const getListing = async (url) => {
   const { request } = requester()
   try {
     const { data: {
+      after = null,
       children = []
     }} = await request(url)
     
-    return children
+    return {
+      after,
+      data: children
+    }
 
   } catch(e) {
     throw new Error(e)
