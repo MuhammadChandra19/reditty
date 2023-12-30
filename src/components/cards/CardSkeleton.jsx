@@ -6,15 +6,16 @@ const CardSkeleton = ({ total = 10 }) => {
   const arr = new Array(total).fill('')
   return (
     arr.map((_, idx) => (
-      <Card key={`skeleton-${idx}`} className="w-full mb-4 h-60 p-2">
-        <div className="flex gap-4">
-          <Skeleton className="w-20 h-56 rounded-l-md"/>
-          <div className="flex-auto flex flex-col gap-4 justify-center items-center">
-            <Skeleton className="w-full rounded-md h-8"/>
-            <Skeleton  className="w-full rounded-md h-24" />
-            <Skeleton className="w-full rounded-md h-8"/>
+      <Card key={`skeleton-${idx}`} className="w-full mb-2">
+          <div className="flex-auto flex-col p-4">
+            <div className="flex gap-2 mb-2">
+              <Skeleton className="h-2 w-64"/>
+              <Skeleton className="h-2 w-64"/>
+              <Skeleton className="h-2 w-64"/>
+            </div>
+            <Skeleton className="h-4 cursor-pointer mb-4" />
+            <Skeleton className="h-2 w-64"/>
           </div>
-        </div>
       </Card>
     ))
   )
