@@ -4,5 +4,9 @@
     "puglin:testing-library/react",
     "plugin:jest-dom/recommended"
   ],
-  "plugins": ["jest", "jest-dom", "prettier"]
+  "plugins": ["jest", "jest-dom", "prettier"],
+  "rules": {
+    "sort-imports": "warn",
+    "no-console": [2, { "allow": ["warn", "error"] }]
+  }
 }
