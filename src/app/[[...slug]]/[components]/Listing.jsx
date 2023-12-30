@@ -1,19 +1,13 @@
 import { getListing } from "@/lib/service"
 import ListingCard from "./ListingCard"
+import { LoadMore } from "@/components/shared/LoadMore"
 
 export default async function Listing({ pathName }) {
-  /**@type {import("@/lib/service").ListingChildren[]} */
-  let data = []
-  try {
-    data = await getListing(pathName)
-  } catch(e) {
-    console.log(e)
-  }
+  const { data: result, after: param } = await getListing(pathName)
+
   return (
     <div className="flex flex-col">
-      {
-        data.map(listing => <ListingCard  key={listing.data.id} data={listing.data} />)
-      }
+      <ListingCard data={result} param={param} pathName={pathName}/>
     </div>
   )
 }

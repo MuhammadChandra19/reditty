@@ -8,16 +8,24 @@ import { ArrowBigDown, ArrowBigUp, MessageSquare } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import * as type from "@/lib/types"
+import { LoadMore } from "@/components/shared/LoadMore"
+import { getListing } from "@/lib/service"
 /**
  * @typedef { Object } TListingCard
- * @property { type.ListingData } data
+ * @property { import("@/lib/service").ListingChildren[]} data
+ * @property { String } param
+ * @property { String } pathName
  * @param { TListingCard } listingCard
  * @returns 
  */
-export default function ListingCard({ data }) {
+export default function ListingCard({ data: list, param, pathName }) {
   const cardType = useStore((state) => state.cardType)
-
-  const RenderCard = () => {
+  /**
+   * 
+   * @param {{ data: import("@/lib/service").ListingChildren }} param0 
+   * @returns 
+   */
+  const RenderCard = ({ data: { data } }) => {
     if(cardType === "Compact") {
       return <CompactCard key={data.id || ''} data={data}/>
     }
@@ -64,5 +72,17 @@ export default function ListingCard({ data }) {
     )
   }
 
-  return <RenderCard />
+  return (
+    <>
+      { list.map(listing => <RenderCard key={listing.data.id} data={listing}/>)}
+      <LoadMore 
+        onLoadData={getListing}
+        renderChild={
+          (data) => data.map(listing => <RenderCard key={listing.data.id} data={listing}/>)
+        }
+        paramKey={param}
+        url={pathName}
+      />
+    </>
+  )
 }
