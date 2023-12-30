@@ -47,8 +47,8 @@ export default function ListingCard({ data }) {
               <Image 
                 src={data.url} 
                 alt={data.title} 
-                height={data.thumbnail_height} 
-                width={data.thumbnail_width} 
+                height={480} 
+                width={240} 
                 className="m-auto"
               />
             }
