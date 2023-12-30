@@ -1,24 +1,24 @@
-import Listing from "./[components]/Listing"
-import { Suspense } from "react"
-import ListingControl from "./[components]/ListingControl"
-import CardSkeleton from "@/components/cards/CardSkeleton"
+import Listing from './[components]/Listing';
+import { Suspense } from 'react';
+import ListingControl from './[components]/ListingControl';
+import CardSkeleton from '@/components/cards/CardSkeleton';
 
 /**
  * @typedef { Object } TParams
  * @property { { slug: String[] } } params
  * @param { TParams } param
- * @returns 
+ * @returns
  */
 export default function Page({ params }) {
-  const { slug = ['r', 'popular', 'hot']} = params 
-  const slugParams = slug.join('/')
+  const { slug = ['r', 'popular', 'hot'] } = params;
+  const slugParams = slug.join('/');
 
   return (
     <main className="container max-w-6xl">
-      <ListingControl params={slug}/>
+      <ListingControl params={slug} />
       <Suspense fallback={<CardSkeleton />}>
-        <Listing pathName={slugParams}/>
+        <Listing pathName={slugParams} />
       </Suspense>
     </main>
-  )
+  );
 }

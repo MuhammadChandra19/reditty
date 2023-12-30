@@ -1,4 +1,4 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 /** @typedef { "Card" | "Compact" | "Classic" } CardType */
 
@@ -14,9 +14,6 @@ import { create } from 'zustand'
 
 /** @type { import("zustand").UseBoundStore<import("zustand").StoreApi<State & Actions>} */
 export const useStore = create((set) => ({
-  cardType: "Card",
+  cardType: 'Card',
   setCardType: (type) => set(() => ({ cardType: type })),
-}))
-
-
-
+}));

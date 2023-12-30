@@ -1,17 +1,16 @@
-import { isInvalidOrExpired } from "../jwt/isInvalidOrExpired"
-import { requestAccessToken } from "./requestAccessToken"
+import { isInvalidOrExpired } from '../jwt/isInvalidOrExpired';
+import { requestAccessToken } from './requestAccessToken';
 
 /**
- * 
- * @param {String} accessToken 
+ *
+ * @param {String} accessToken
  * @return { Promise<String> }
  */
 
 export const validateAccessToken = async (accessToken) => {
-
-  if(isInvalidOrExpired(accessToken)) {
-    return await requestAccessToken()
+  if (isInvalidOrExpired(accessToken)) {
+    return await requestAccessToken();
   }
 
-  return accessToken
-}
+  return accessToken;
+};

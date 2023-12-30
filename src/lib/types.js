@@ -11,7 +11,7 @@
  */
 
 /**
- * 
+ *
  * @typedef { Object } ListingData
  * @property { String } id
  * @property { String } author
@@ -30,4 +30,4 @@
  * @property { Number } created
  */
 
-export {}
+export {};

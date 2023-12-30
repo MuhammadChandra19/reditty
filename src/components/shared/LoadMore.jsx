@@ -1,7 +1,7 @@
-"use client"
-import { useEffect, useMemo, useState } from "react"
-import { useInView } from "react-intersection-observer"
-import { Spinner } from "../ui/spinner"
+'use client';
+import { useEffect, useMemo, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { Spinner } from '../ui/spinner';
 
 /**
  * @typedef {{
@@ -10,7 +10,7 @@ import { Spinner } from "../ui/spinner"
  *  renderChild: (data: T) => JSX.Element
  *  url: String
  * }} TLoadMore
- * 
+ *
  * @template T
  */
 
@@ -18,25 +18,29 @@ import { Spinner } from "../ui/spinner"
  * @template T
  * @param {TLoadMore<T>} props - Props for the LoadMore component.
  * @returns {JSX.Element} JSX representing the LoadMore component.
- * 
+ *
  */
 export const LoadMore = ({ onLoadData, renderChild, paramKey, url }) => {
-  const { ref, inView } = useInView()
-  const [data, setData ] = useState([])
-  const [param, setParam] = useState(null)
+  const { ref, inView } = useInView();
+  const [data, setData] = useState([]);
+  const [param, setParam] = useState(null);
 
-  const computedParam = useMemo(() => param === null ? paramKey : param, [param, paramKey])
-
+  const computedParam = useMemo(
+    () => (param === null ? paramKey : param),
+    [param, paramKey],
+  );
 
   useEffect(() => {
     if (inView) {
       const delay = 500;
       const timeout = setTimeout(() => {
-        onLoadData(`${url}?after=${computedParam}`).then(({ data: res = [], after}) => {
-          setData([...data, ...res])
-          setParam(after)
-        })
-      }, delay)
+        onLoadData(`${url}?after=${computedParam}`).then(
+          ({ data: res = [], after }) => {
+            setData([...data, ...res]);
+            setParam(after);
+          },
+        );
+      }, delay);
 
       return () => clearTimeout(timeout);
     }
@@ -49,16 +53,5 @@ export const LoadMore = ({ onLoadData, renderChild, paramKey, url }) => {
         <Spinner />
       </div>
     </>
-  )
-}
-
-
-// const Check= () => {
-//   return (
-//     <LoadMore
-//      onLoadData={getListing}
-//      renderChild={()}
-    
-//     />
-//   )
-// }
+  );
+};
