@@ -13,7 +13,6 @@ import {
   BadgeInfo,
   Flame,
   MinusSquare,
-  PanelBottom,
   Square,
   SquareEqual,
   TrendingUp,
@@ -57,15 +56,15 @@ export const ListingControl = ({ params }) => {
 
   const SelectedCardType = () => {
     if (cardType === 'Card') {
-      return <Square />;
+      return <Square data-testid="square-card" />;
     }
 
     if (cardType === 'Classic') {
-      return <MinusSquare />;
+      return <MinusSquare data-testid="classic-card" />;
     }
 
     if (cardType === 'Compact') {
-      return <SquareEqual />;
+      return <SquareEqual data-testid="compact-card" />;
     }
   };
 
@@ -75,6 +74,7 @@ export const ListingControl = ({ params }) => {
         <div
           className={`flex gap-1 p-2 cursor-pointer ${isActive('hot')}`}
           onClick={() => handleChangeType('hot')}
+          data-testid="control-category-hot"
         >
           <Flame className="h-6 w-6" />
           <span>Hot</span>
@@ -82,6 +82,7 @@ export const ListingControl = ({ params }) => {
         <div
           className={`flex gap-1 p-2 cursor-pointer ${isActive('new')}`}
           onClick={() => handleChangeType('new')}
+          data-testid="control-category-new"
         >
           <BadgeInfo className="h-6 w-6" />
           <span>New</span>
@@ -89,6 +90,7 @@ export const ListingControl = ({ params }) => {
         <div
           className={`flex gap-1 p-2 cursor-pointer ${isActive('top')}`}
           onClick={() => handleChangeType('top')}
+          data-testid="control-category-top"
         >
           <TrendingUp className="h-6 w-6" />
           <span>Top</span>
@@ -96,6 +98,7 @@ export const ListingControl = ({ params }) => {
       </div>
       <div className="flex-auto px-4">
         <Input
+          data-testid="search-field"
           className="w-full"
           placeholder="Search Reddity"
           value={searchValue}
@@ -113,15 +116,24 @@ export const ListingControl = ({ params }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <DropdownMenuItem onClick={() => setCardType('Card')}>
+            <DropdownMenuItem
+              onClick={() => setCardType('Card')}
+              data-testid="action-type-card"
+            >
               <Square className="mr-1" />
               <span>Card</span>
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setCardType('Classic')}>
+            <DropdownMenuItem
+              onClick={() => setCardType('Classic')}
+              data-testid="action-type-classic"
+            >
               <MinusSquare className="mr-1" />
               <span>Classic</span>
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setCardType('Compact')}>
+            <DropdownMenuItem
+              onClick={() => setCardType('Compact')}
+              data-testid="action-type-compact"
+            >
               <SquareEqual className="mr-1" />
               <span>Compact</span>
             </DropdownMenuItem>
