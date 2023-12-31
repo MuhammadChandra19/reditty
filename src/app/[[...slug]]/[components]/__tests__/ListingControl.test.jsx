@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { default as ListingControl } from '../ListingControl';
 import { renderComponent } from '@/utils/test';
@@ -11,11 +11,7 @@ global.router = {
 };
 
 const render = () =>
-  renderComponent(<ListingControl params={['r', 'popular', 'hot']} />, {
-    router: {
-      push: MOCK_PUSH,
-    },
-  });
+  renderComponent(<ListingControl params={['r', 'popular', 'hot']} />);
 
 describe('ListingControl', () => {
   test.each([

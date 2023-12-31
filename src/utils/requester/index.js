@@ -6,8 +6,7 @@ export const requester = () => {
   const OAUTH_URL = 'https://oauth.reddit.com/';
 
   const request = async (url) => {
-    console.log(url);
-    const token = cookies().get(COOKIE_KEY_ACCESS_TOKEN)?.value;
+    const token = cookies().get(COOKIE_KEY_ACCESS_TOKEN)?.value || '';
     const res = await fetch(`${OAUTH_URL}${url}`, {
       method: 'GET',
       headers: {

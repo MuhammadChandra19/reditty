@@ -1,13 +1,13 @@
 const { requestAccessToken } = require('../requestAccessToken');
 
-const MOCK_ERROR = jest.fn()
-global.console.error = MOCK_ERROR
+const MOCK_ERROR = jest.fn();
+global.console.error = MOCK_ERROR;
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
     json: () => Promise.resolve({ access_token: 'token' }),
   }),
-)
+);
 
 describe('Request Access Token', () => {
   test('should return access token', async () => {
@@ -29,10 +29,9 @@ describe('Request Access Token', () => {
   });
 
   test('should handle error when request', async () => {
-    fetch.mockImplementationOnce(() => Promise.reject('Error getting token'))
+    fetch.mockImplementationOnce(() => Promise.reject('Error getting token'));
 
     await requestAccessToken();
-    expect(MOCK_ERROR).toHaveBeenLastCalledWith('Error getting token')
-  })
+    expect(MOCK_ERROR).toHaveBeenLastCalledWith('Error getting token');
+  });
 });
-

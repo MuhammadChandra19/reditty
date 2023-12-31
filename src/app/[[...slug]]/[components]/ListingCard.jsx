@@ -34,7 +34,11 @@ export default function ListingCard({ data: list, param, pathName }) {
     }
 
     return (
-      <Card key={data.id || ''} className="w-full flex mb-4">
+      <Card
+        key={data.id || ''}
+        className="w-full flex mb-4"
+        data-testid={`subreddit-${data.id}`}
+      >
         <div className="w-20 flex-none flex-col flex gap-2 p-4 bg-slate-300 rounded-l-md items-center justify-center">
           <ArrowBigUp className="cursor-pointer" />
           <div className="font-semibold text-md">{nFormatter(data.ups)}</div>

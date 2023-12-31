@@ -1,7 +1,11 @@
 import { getListing } from '@/lib/service';
 import ListingCard from './ListingCard';
-
+/**
+ * @param {{ pathName: String }} param0
+ * @returns
+ */
 export default async function Listing({ pathName }) {
+  console.log(pathName);
   const { data: result, after: param } = await getListing(pathName);
 
   return (
