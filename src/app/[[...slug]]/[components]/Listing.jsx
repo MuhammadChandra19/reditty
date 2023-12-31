@@ -6,7 +6,12 @@ export default async function Listing({ pathName }) {
 
   return (
     <div className="flex flex-col">
-      <ListingCard data={result} param={param} pathName={pathName} />
+      <ListingCard
+        data={result}
+        param={param}
+        pathName={pathName}
+        data-testid="listing-cards"
+      />
     </div>
   );
 }
