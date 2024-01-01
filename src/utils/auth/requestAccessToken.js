@@ -12,17 +12,19 @@ export const requestAccessToken = async () => {
   const USERNAME = process.env.REDDIT_USERNAME;
   const PASSWORD = process.env.REDDIT_PASSWORD;
 
+  var urlencoded = new URLSearchParams();
+  urlencoded.append("grant_type", "password");
+  urlencoded.append("username", USERNAME);
+  urlencoded.append("password", PASSWORD);
+  console.log(urlencoded)
+
   var requestOptions = {
     method: 'POST',
     headers: {
       Authorization: `Basic ${BASIC_AUTH}`,
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: JSON.stringify({
-      grant_type: 'password',
-      username: USERNAME,
-      password: PASSWORD,
-    }),
+    body: urlencoded,
     redirect: 'follow',
   };
 
