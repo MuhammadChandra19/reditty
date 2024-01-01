@@ -3,7 +3,7 @@ import ClassicCard from '@/components/cards/ClassicCard';
 import CompactCard from '@/components/cards/CompactCard';
 import { Card } from '@/components/ui/card';
 import { useStore } from '@/lib/store';
-import { nFormatter, timeAgoFromUnixTimestamp } from '@/utils/helper';
+import { haveThumbnail, nFormatter, timeAgoFromUnixTimestamp } from '@/utils/helper';
 import { ArrowBigDown, ArrowBigUp, MessageSquare } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -66,14 +66,25 @@ export default function ListingCard({ data: list, param, pathName }) {
             {data.title}
           </Link>
           <div className="bg-black ml-2">
-            {data.thumbnail_height && !data.is_video && (
+            {haveThumbnail(data) && (
               <Image
                 src={data.url}
-                alt={data.title}
+                alt={data.thumbnail}
                 height={480}
                 width={240}
                 className="m-auto"
               />
+            )}
+            {data.is_video && (
+              <video 
+                width={240}
+                height={480}
+                className="m-auto"
+                autoPlay={true}
+                controls
+              >
+                <source src={data.media.reddit_video.fallback_url}/>
+              </video>
             )}
           </div>
           <div className="flex gap-4 p-2">

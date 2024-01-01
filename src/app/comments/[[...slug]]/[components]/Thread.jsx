@@ -1,5 +1,5 @@
 import { getThread } from '@/lib/service';
-import { nFormatter, timeAgoFromUnixTimestamp } from '@/utils/helper';
+import { haveThumbnail, nFormatter, timeAgoFromUnixTimestamp } from '@/utils/helper';
 import { ArrowBigDown, ArrowBigUp, MessageSquare } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -75,7 +75,7 @@ export default async function Thread({ pathName }) {
             />
           )}
           <div className=" ml-2 h-[410] w-[640] mb-8">
-            {content.thumbnail_height && !content.is_video && (
+            {haveThumbnail(content) && (
               <Image
                 src={content.url}
                 alt={content.title}
@@ -84,6 +84,17 @@ export default async function Thread({ pathName }) {
                 objectFit="contain"
                 className="m-auto"
               />
+            )}
+            {content.is_video && (
+              <video 
+                width={240}
+                height={480}
+                className="m-auto"
+                autoPlay={true}
+                controls
+              >
+                <source src={content.media.reddit_video.fallback_url}/>
+              </video>
             )}
           </div>
           <div className="flex gap-6">

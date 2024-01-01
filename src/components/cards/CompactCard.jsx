@@ -18,9 +18,9 @@ const CompactCard = ({ data }) => {
       </div>
       <div className="flex justify-between flex-auto p-2">
         <div className="flex flex-col gap-2">
-          <div className="font-semibold text-gray-500 cursor-pointer">
+          <Link href={`/comments${data.permalink}`} className="font-semibold text-gray-500 cursor-pointer">
             {data.title}
-          </div>
+          </Link>
           <div className="flex gap-2">
             <Link
               className="font-semibold text-xs cursor-pointer"

@@ -41,3 +41,16 @@ export function timeAgoFromUnixTimestamp(unixTimestamp) {
     return 'Just now';
   }
 }
+
+/**
+ * 
+ * @param {import("@/lib/types").ListingData} data 
+ * @returns
+ */
+export const haveThumbnail = (data) => {
+  if((data.thumbnail !== 'default') && !data.is_video && data.thumbnail_height !== null) {
+    return true
+  }
+
+  return false
+}

@@ -24,10 +24,17 @@
  * @property { String } selftext
  * @property { Number | null  } thumbnail_height
  * @property { Number | null } thumbnail_width
+ * @property { String } thumbnail
  * @property { String | null } url
  * @property { reddit_video: { fallback_url: String }} media
  * @property { Boolean } is_video
  * @property { Number } created
+ * @property {{
+ *  reddit_video: {
+ *    dash_url: String
+ *    fallback_url: String
+ *  }
+ * } | null } media
  */
 
 export {};
