@@ -13,9 +13,9 @@ const USERNAME = process.env.REDDIT_USERNAME;
 const PASSWORD = process.env.REDDIT_PASSWORD;
 
 var urlencoded = new URLSearchParams();
-urlencoded.append("grant_type", "password");
-urlencoded.append("username", USERNAME);
-urlencoded.append("password", PASSWORD);
+urlencoded.append('grant_type', 'password');
+urlencoded.append('username', USERNAME);
+urlencoded.append('password', PASSWORD);
 
 describe('Request Access Token', () => {
   test('should return access token', async () => {
@@ -25,7 +25,7 @@ describe('Request Access Token', () => {
     expect(fetch).toHaveBeenLastCalledWith(
       'https://www.reddit.com/api/v1/access_token',
       {
-        body:urlencoded,
+        body: urlencoded,
         headers: {
           Authorization: 'Basic YmFzaWMta2V5OmJhc2ljLXNlY3JldA==',
           'Content-Type': 'application/x-www-form-urlencoded',

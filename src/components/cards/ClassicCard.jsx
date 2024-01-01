@@ -1,8 +1,4 @@
-import {
-  ArrowBigUp,
-  ArrowBigDown,
-  MessageSquare,
-} from 'lucide-react';
+import { ArrowBigUp, ArrowBigDown, MessageSquare } from 'lucide-react';
 import { Card } from '../ui/card';
 import { nFormatter, timeAgoFromUnixTimestamp } from '@/utils/helper';
 import Link from 'next/link';
@@ -34,7 +30,12 @@ const ClassicCard = ({ data }) => {
         </div>
       )}
       <div className="flex-auto flex-col p-4">
-        <Link href={`/comments${data.permalink}`} className="font-semibold cursor-pointer mb-4">{data.title}</Link>
+        <Link
+          href={`/comments${data.permalink}`}
+          className="font-semibold cursor-pointer mb-4"
+        >
+          {data.title}
+        </Link>
         <div className="flex gap-2 mb-2">
           <Link
             className="font-medium text-sm cursor-pointer"

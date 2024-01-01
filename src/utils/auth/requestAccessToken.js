@@ -13,10 +13,10 @@ export const requestAccessToken = async () => {
   const PASSWORD = process.env.REDDIT_PASSWORD;
 
   var urlencoded = new URLSearchParams();
-  urlencoded.append("grant_type", "password");
-  urlencoded.append("username", USERNAME);
-  urlencoded.append("password", PASSWORD);
-  console.log(urlencoded)
+  urlencoded.append('grant_type', 'password');
+  urlencoded.append('username', USERNAME);
+  urlencoded.append('password', PASSWORD);
+  console.log(urlencoded);
 
   var requestOptions = {
     method: 'POST',

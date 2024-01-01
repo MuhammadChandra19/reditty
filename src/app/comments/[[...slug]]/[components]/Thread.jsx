@@ -1,5 +1,9 @@
 import { getThread } from '@/lib/service';
-import { haveThumbnail, nFormatter, timeAgoFromUnixTimestamp } from '@/utils/helper';
+import {
+  haveThumbnail,
+  nFormatter,
+  timeAgoFromUnixTimestamp,
+} from '@/utils/helper';
 import { ArrowBigDown, ArrowBigUp, MessageSquare } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -86,14 +90,14 @@ export default async function Thread({ pathName }) {
               />
             )}
             {content.is_video && (
-              <video 
+              <video
                 width={240}
                 height={480}
                 className="m-auto"
                 autoPlay={true}
                 controls
               >
-                <source src={content.media.reddit_video.fallback_url}/>
+                <source src={content.media.reddit_video.fallback_url} />
               </video>
             )}
           </div>
