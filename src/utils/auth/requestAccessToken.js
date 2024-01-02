@@ -16,7 +16,6 @@ export const requestAccessToken = async () => {
   urlencoded.append('grant_type', 'password');
   urlencoded.append('username', USERNAME);
   urlencoded.append('password', PASSWORD);
-  console.log(urlencoded);
 
   var requestOptions = {
     method: 'POST',

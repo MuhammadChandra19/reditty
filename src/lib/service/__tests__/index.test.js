@@ -17,8 +17,8 @@ describe('Service Test', () => {
     test('Should return correct subreddit list', async () => {
       const { after, data } = await getListing('url');
 
-      expect(fetch).toHaveBeenLastCalledWith('https://oauth.reddit.com/url', {
-        headers: { Authorization: 'Bearer ' },
+      expect(fetch).toHaveBeenCalledWith('https://oauth.reddit.com/url', {
+        headers: { Authorization: 'Bearer token' },
         method: 'GET',
         redirect: 'follow',
       });

@@ -13,7 +13,9 @@ jest.mock('next/headers', () => ({
   ...jest.requireActual('next/headers'),
   cookies: () => ({
     ...jest.requireActual('next/headers').cookies,
-    get: jest.fn(),
+    get: jest.fn(() => ({
+      value: "token"
+    })),
   }),
 }));
 

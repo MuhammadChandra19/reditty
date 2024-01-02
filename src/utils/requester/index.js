@@ -1,12 +1,16 @@
 'use server';
 import { COOKIE_KEY_ACCESS_TOKEN } from '@/utils/jwt/parseJwt';
 import { cookies } from 'next/headers';
+import { requestAccessToken } from "../auth/requestAccessToken";
 
 export const requester = () => {
   const OAUTH_URL = 'https://oauth.reddit.com/';
 
   const request = async (url) => {
-    const token = cookies().get(COOKIE_KEY_ACCESS_TOKEN)?.value || '';
+    let token = cookies().get(COOKIE_KEY_ACCESS_TOKEN)?.value || '';
+    if(!token) {
+      token = await requestAccessToken()
+    }
     const res = await fetch(`${OAUTH_URL}${url}`, {
       method: 'GET',
       headers: {
